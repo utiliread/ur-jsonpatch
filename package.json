@@ -7,6 +7,9 @@
     "build": "tsc",
     "clean": "rimraf dist"
   },
+  "dependencies": {
+    "fast-json-patch": "^2.0.6"
+  },
   "devDependencies": {
     "rimraf": "^2.6.2",
     "typescript": "^2.6.2"
