@@ -3,23 +3,23 @@ export class Patch {
     constructor() {
         this.operations = [];
     }
-    Add(path, value) {
+    add(path, value) {
         this.operations.push({ op: 'add', path: resolvePath(path), value: value });
         return this;
     }
-    Remove(path) {
+    remove(path) {
         this.operations.push({ op: 'remove', path: resolvePath(path) });
         return this;
     }
-    Replace(path, value) {
+    replace(path, value) {
         this.operations.push({ op: 'replace', path: resolvePath(path), value: value });
         return this;
     }
-    Copy(from, path) {
+    copy(from, path) {
         this.operations.push({ op: 'copy', from: resolvePath(from), path: resolvePath(path) });
         return this;
     }
-    Move(from, path) {
+    move(from, path) {
         this.operations.push({ op: 'move', from: resolvePath(from), path: resolvePath(path) });
         return this;
     }

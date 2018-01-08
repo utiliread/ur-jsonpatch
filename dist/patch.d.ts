@@ -6,10 +6,10 @@ export interface BuiltPath {
 }
 export declare class Patch<T> {
     operations: Operation[];
-    Add(path: Path<T>, value: any): Patch<T>;
-    Remove(path: Path<T>): Patch<T>;
-    Replace(path: Path<T>, value: any): Patch<T>;
-    Copy(from: Path<T>, path: Path<T>): Patch<T>;
-    Move(from: Path<T>, path: Path<T>): Patch<T>;
+    add(path: Path<T>, value: any): Patch<T>;
+    remove(path: Path<T>): Patch<T>;
+    replace(path: Path<T>, value: any): Patch<T>;
+    copy(from: Path<T>, path: Path<T>): Patch<T>;
+    move(from: Path<T>, path: Path<T>): Patch<T>;
     test(path: Path<T>, value: any): Patch<T>;
 }
