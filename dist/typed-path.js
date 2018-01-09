@@ -8,7 +8,7 @@ const toStringMethods = [
 function pathToString(path) {
     return path.reduce((accumulated, current) => {
         if (+current === +current) {
-            return accumulated + current;
+            return accumulated + `/${current}`;
         }
         else if (accumulated !== '/') {
             return accumulated + `/${current}`;

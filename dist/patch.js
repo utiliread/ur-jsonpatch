@@ -7,6 +7,10 @@ export class Patch {
         this.operations.push({ op: 'add', path: resolvePath(path), value: value });
         return this;
     }
+    push(path, value) {
+        this.operations.push({ op: 'add', path: resolvePath(path) + '/-', value: value });
+        return this;
+    }
     remove(path) {
         this.operations.push({ op: 'remove', path: resolvePath(path) });
         return this;
@@ -32,10 +36,6 @@ function resolvePath(path) {
     if (typeof path === 'string') {
         return path;
     }
-    else if (path instanceof Function) {
-        return path(typedPath()).path();
-    }
-    else {
-        return path.path();
-    }
+    let builtPath = path(typedPath());
+    return builtPath.path();
 }

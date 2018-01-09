@@ -20,7 +20,7 @@ const toStringMethods: (string | symbol | number)[] = [
 function pathToString(path: string[]): string {
     return path.reduce((accumulated, current) => {
         if (+current === +current) {
-            return accumulated + current;
+            return accumulated + `/${current}`;
         }
         else if (accumulated !== '/') {
             return accumulated + `/${current}`;

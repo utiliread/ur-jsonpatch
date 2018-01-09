@@ -1,15 +1,16 @@
 import { TypedPathBuilder } from './typed-path';
 import { Operation } from 'fast-json-patch';
-export declare type Path<T> = ((x: TypedPathBuilder<T>) => BuiltPath) | BuiltPath | string;
-export interface BuiltPath {
+export declare type Path<TDocument, TDestination> = ((x: TypedPathBuilder<TDocument>) => BuiltPath<TDestination>) | string;
+export interface BuiltPath<TDestination> {
     path: () => string;
 }
-export declare class Patch<T> {
+export declare class Patch<TDocument> {
     operations: Operation[];
-    add(path: Path<T>, value: any): Patch<T>;
-    remove(path: Path<T>): Patch<T>;
-    replace(path: Path<T>, value: any): Patch<T>;
-    copy(from: Path<T>, path: Path<T>): Patch<T>;
-    move(from: Path<T>, path: Path<T>): Patch<T>;
-    test(path: Path<T>, value: any): Patch<T>;
+    add<TDestination>(path: Path<TDocument, TDestination>, value: any): Patch<TDocument>;
+    push<TDestination>(path: Path<TDocument, TDestination>, value: any): Patch<TDocument>;
+    remove<TDestination>(path: Path<TDocument, TDestination>): Patch<TDocument>;
+    replace<TDestination>(path: Path<TDocument, TDestination>, value: any): Patch<TDocument>;
+    copy<TDestination>(from: Path<TDocument, TDestination>, path: Path<TDocument, TDestination>): Patch<TDocument>;
+    move<TDestination>(from: Path<TDocument, TDestination>, path: Path<TDocument, TDestination>): Patch<TDocument>;
+    test<TDestination>(path: Path<TDocument, TDestination>, value: any): Patch<TDocument>;
 }
