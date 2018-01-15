@@ -36,6 +36,5 @@ function resolvePath(path) {
     if (typeof path === 'string') {
         return path;
     }
-    let builtPath = path(typedPath());
-    return builtPath.path();
+    return path(typedPath()).path();
 }

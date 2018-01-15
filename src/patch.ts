@@ -52,6 +52,5 @@ function resolvePath<TDocument, TDestination>(path: Path<TDocument, TDestination
         return path;
     }
 
-    let builtPath = path(typedPath<TDocument>());
-    return builtPath.path();
+    return path(typedPath<TDocument>()).path();
 }
