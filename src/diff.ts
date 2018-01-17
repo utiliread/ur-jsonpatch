@@ -1,23 +1,31 @@
+import { BuiltPath, resolvePath } from './typed-path';
+
 import { Operation } from './operations';
 import { diff as jiffDiff } from 'jiff';
 
-export function diff(from: any, to: any, basePath?: string): Operation[] {
+export function diff(from: any, to: any, basePath?: string | BuiltPath<any>): Operation[] {
     let operations = jiffDiff(from, to, {
         invertible: false // Do not include test operations at the moment
     });
 
-    if (basePath && basePath.endsWith('/')) {
-        basePath = basePath.substr(0, basePath.length - 1);
+    let resolvedBasePath = '';
+
+    if (basePath) {
+        resolvedBasePath = resolvePath(basePath);
+    }
+
+    if (resolvedBasePath.endsWith('/')) {
+        resolvedBasePath = resolvedBasePath.substr(0, resolvedBasePath.length - 1);
     }
 
     for (let operation of operations) {
-        if (basePath) {
-            operation.path = basePath + operation.path;
+        operation.path = resolvedBasePath + operation.path;
 
-            if (operation.from) {
-                operation.from = basePath + operation.from;
-            }
+        if (operation.from) {
+            operation.from = resolvedBasePath + operation.from;
         }
+
+        // jiff.diff inserts a context property for each operation
         delete operation.context;
     }
 
