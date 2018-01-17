@@ -5,13 +5,26 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "test": "mocha -r ./ts-babel-register.js src/**/*.spec.ts",
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "fast-json-patch": "^2.0.6"
+    "jiff": "^0.7.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.37",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.37",
+    "@babel/preset-env": "^7.0.0-beta.37",
+    "@babel/register": "^7.0.0-beta.37",
+    "@babel/runtime": "^7.0.0-beta.37",
+    "@types/chai": "^4.1.0",
+    "@types/mocha": "^2.2.46",
+    "@types/node": "^9.3.0",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0",
     "rimraf": "^2.6.2",
+    "ts-node": "^4.1.0",
     "typescript": "^2.6.2"
   }
 }

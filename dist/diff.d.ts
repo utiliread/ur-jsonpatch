@@ -1,2 +1,2 @@
-import { Operation } from 'fast-json-patch';
-export declare function diff(tree1: any, tree2: any): Operation[];
+import { Operation } from './operations';
+export declare function diff(from: any, to: any, basePath?: string): Operation[];

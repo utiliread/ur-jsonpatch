@@ -1,14 +1,10 @@
-import { typedPath } from './typed-path';
+import { resolvePath } from './typed-path';
 export class Patch {
     constructor() {
         this.operations = [];
     }
     add(path, value) {
         this.operations.push({ op: 'add', path: resolvePath(path), value: value });
-        return this;
-    }
-    push(path, value) {
-        this.operations.push({ op: 'add', path: resolvePath(path) + '/-', value: value });
         return this;
     }
     remove(path) {
@@ -31,10 +27,4 @@ export class Patch {
         this.operations.push({ op: 'test', path: resolvePath(path), value: value });
         return this;
     }
-}
-function resolvePath(path) {
-    if (typeof path === 'string') {
-        return path;
-    }
-    return path(typedPath()).path();
 }

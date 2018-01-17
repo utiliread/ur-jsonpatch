@@ -1,23 +1,12 @@
-import { TypedPathBuilder, typedPath } from './typed-path';
+import { Path, TypedPathBuilder, resolvePath } from './typed-path';
 
-import { Operation } from 'fast-json-patch';
-
-export type Path<TDocument, TDestination> = ((x: TypedPathBuilder<TDocument>) => BuiltPath<TDestination>) | string;
-
-export interface BuiltPath<TDestination> {
-    path: () => string;
-}
+import { Operation } from './operations';
 
 export class Patch<TDocument> {
     operations: Operation[] = [];
 
     add<TDestination>(path: Path<TDocument, TDestination>, value: any): Patch<TDocument> {
         this.operations.push({ op: 'add', path: resolvePath(path), value: value });
-        return this;
-    }
-
-    push<TDestination>(path: Path<TDocument, TDestination>, value: any): Patch<TDocument> {
-        this.operations.push({ op: 'add', path: resolvePath(path) + '/-', value: value });
         return this;
     }
 
@@ -45,12 +34,4 @@ export class Patch<TDocument> {
         this.operations.push({ op: 'test', path: resolvePath(path), value: value });
         return this;
     }
-}
-
-function resolvePath<TDocument, TDestination>(path: Path<TDocument, TDestination>) {
-    if (typeof path === 'string') {
-        return path;
-    }
-
-    return path(typedPath<TDocument>()).path();
 }

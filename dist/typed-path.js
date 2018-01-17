@@ -28,3 +28,17 @@ export function typedPath(path = []) {
         }
     });
 }
+export function resolvePath(path) {
+    if (typeof path === 'string') {
+        return path;
+    }
+    else if (isBuiltPath(path)) {
+        return path.path();
+    }
+    else {
+        return path(typedPath()).path();
+    }
+}
+function isBuiltPath(path) {
+    return typeof path.path === 'function';
+}
