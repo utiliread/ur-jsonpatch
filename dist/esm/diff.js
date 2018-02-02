@@ -21,3 +21,4 @@ export function diff(from, to, basePath) {
     }
     return operations;
 }
+//# sourceMappingURL=diff.js.map

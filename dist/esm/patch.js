@@ -28,3 +28,4 @@ export class Patch {
         return this;
     }
 }
+//# sourceMappingURL=patch.js.map

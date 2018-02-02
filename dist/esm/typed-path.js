@@ -42,3 +42,4 @@ export function resolvePath(path) {
 function isBuiltPath(path) {
     return typeof path.path === 'function';
 }
+//# sourceMappingURL=typed-path.js.map
