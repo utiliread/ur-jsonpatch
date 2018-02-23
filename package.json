@@ -10,12 +10,12 @@
         "watch": "karma start --auto-watch --browsers ChromeDebugging karma.config.js",
         "clean": "rimraf dist"
     },
-    "dependencies": {
-        "jiff": "^0.7.3"
-    },
     "devDependencies": {
         "rimraf": "^2.6.2",
-        "typescript": "^2.7.1",
-        "ur-test": "0.0.1"
+        "typescript": "^2.7.2",
+        "ur-test": "^0.0.1"
+    },
+    "dependencies": {
+        "jiff": "^0.7.3"
     }
 }
