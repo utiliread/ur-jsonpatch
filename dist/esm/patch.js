@@ -1,31 +1,33 @@
 import { resolvePath } from './typed-path';
-export class Patch {
-    constructor() {
+var Patch = /** @class */ (function () {
+    function Patch() {
         this.operations = [];
     }
-    add(path, value) {
+    Patch.prototype.add = function (path, value) {
         this.operations.push({ op: 'add', path: resolvePath(path), value: value });
         return this;
-    }
-    remove(path) {
+    };
+    Patch.prototype.remove = function (path) {
         this.operations.push({ op: 'remove', path: resolvePath(path) });
         return this;
-    }
-    replace(path, value) {
+    };
+    Patch.prototype.replace = function (path, value) {
         this.operations.push({ op: 'replace', path: resolvePath(path), value: value });
         return this;
-    }
-    copy(from, path) {
+    };
+    Patch.prototype.copy = function (from, path) {
         this.operations.push({ op: 'copy', from: resolvePath(from), path: resolvePath(path) });
         return this;
-    }
-    move(from, path) {
+    };
+    Patch.prototype.move = function (from, path) {
         this.operations.push({ op: 'move', from: resolvePath(from), path: resolvePath(path) });
         return this;
-    }
-    test(path, value) {
+    };
+    Patch.prototype.test = function (path, value) {
         this.operations.push({ op: 'test', path: resolvePath(path), value: value });
         return this;
-    }
-}
+    };
+    return Patch;
+}());
+export { Patch };
 //# sourceMappingURL=patch.js.map

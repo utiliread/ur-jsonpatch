@@ -1,32 +1,33 @@
 "use strict";
 // https://github.com/Microsoft/TypeScript/issues/3496#issuecomment-128553540
 Object.defineProperty(exports, "__esModule", { value: true });
-const toStringMethods = [
+var toStringMethods = [
     'toString',
     'path',
     Symbol.toStringTag,
     'valueOf'
 ];
 function pathToString(path) {
-    return path.reduce((accumulated, current) => {
+    return path.reduce(function (accumulated, current) {
         if (+current === +current) {
-            return accumulated + `/${current}`;
+            return accumulated + ("/" + current);
         }
         else if (accumulated !== '/') {
-            return accumulated + `/${current}`;
+            return accumulated + ("/" + current);
         }
         else {
             return accumulated + current;
         }
     }, '/');
 }
-function typedPath(path = []) {
+function typedPath(path) {
+    if (path === void 0) { path = []; }
     return new Proxy({}, {
-        get(target, name) {
+        get: function (target, name) {
             if (toStringMethods.includes(name)) {
-                return () => pathToString(path);
+                return function () { return pathToString(path); };
             }
-            return typedPath([...path, name.toString()]);
+            return typedPath(path.concat([name.toString()]));
         }
     });
 }
