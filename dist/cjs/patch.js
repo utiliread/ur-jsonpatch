@@ -6,7 +6,11 @@ var Patch = /** @class */ (function () {
         this.operations = [];
     }
     Patch.prototype.add = function (path, value) {
-        this.operations.push({ op: 'add', path: typed_path_1.resolvePath(path), value: value });
+        var resolvedPath = typed_path_1.resolvePath(path);
+        if (!/^.*[0-9]$/.test(resolvedPath)) {
+            resolvedPath += "/-"; // Append
+        }
+        this.operations.push({ op: 'add', path: resolvedPath, value: value });
         return this;
     };
     Patch.prototype.remove = function (path) {
