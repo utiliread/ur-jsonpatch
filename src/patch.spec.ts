@@ -59,4 +59,30 @@ describe('patch', () => {
         expect(operations[0].path).to.equal('/array/2');
         expect(operations[0].value).to.equal('new value');
     });
+
+    it('should append of no index is specified', () => {
+        const patch = new Patch<Document>();
+        
+        patch.add(x => x.array, 'new value');
+
+        const operations: any[] = patch.operations;
+
+        expect(operations).has.length(1);
+        expect(operations[0].op).to.equal('add');
+        expect(operations[0].path).to.equal('/array/-');
+        expect(operations[0].value).to.equal('new value');
+    });
+
+    it('should insert if an index is specified', () => {
+        const patch = new Patch<Document>();
+        
+        patch.add(x => x.array[1], 'new value');
+
+        const operations: any[] = patch.operations;
+
+        expect(operations).has.length(1);
+        expect(operations[0].op).to.equal('add');
+        expect(operations[0].path).to.equal('/array/1');
+        expect(operations[0].value).to.equal('new value');
+    });
 });

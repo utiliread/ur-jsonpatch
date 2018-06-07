@@ -6,7 +6,11 @@ export class Patch<TDocument> {
     operations: Operation[] = [];
 
     add<TDestination>(path: Path<TDocument, TDestination>, value: any): Patch<TDocument> {
-        this.operations.push({ op: 'add', path: resolvePath(path), value: value });
+        let resolvedPath = resolvePath(path);
+        if (!/^.*[0-9]$/.test(resolvedPath)) {
+            resolvedPath += "/-"; // Append
+        }
+        this.operations.push({ op: 'add', path: resolvedPath, value: value });
         return this;
     }
 
