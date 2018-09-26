@@ -12,8 +12,8 @@
     },
     "devDependencies": {
         "rimraf": "^2.6.2",
-        "typescript": "^2.7.2",
-        "ur-test": "^0.0.1"
+        "typescript": "^3.0.3",
+        "ur-test": "^0.1.0"
     },
     "dependencies": {
         "jiff": "^0.7.3"

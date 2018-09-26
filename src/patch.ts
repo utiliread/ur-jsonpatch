@@ -5,7 +5,7 @@ import { Operation } from './operations';
 export class Patch<TDocument> {
     operations: Operation[] = [];
 
-    add<TDestination>(path: Path<TDocument, TDestination>, value: any): Patch<TDocument> {
+    add<TDestination>(path: Path<TDocument, TDestination>, value: TDestination): Patch<TDocument> {
         let resolvedPath = resolvePath(path);
         if (!/^.*[0-9]$/.test(resolvedPath)) {
             resolvedPath += "/-"; // Append
@@ -19,7 +19,7 @@ export class Patch<TDocument> {
         return this;
     }
 
-    replace<TDestination>(path: Path<TDocument, TDestination>, value: any): Patch<TDocument> {
+    replace<TDestination>(path: Path<TDocument, TDestination>, value: TDestination): Patch<TDocument> {
         this.operations.push({ op: 'replace', path: resolvePath(path), value: value });
         return this;
     }
@@ -34,7 +34,7 @@ export class Patch<TDocument> {
         return this;
     }
 
-    test<TDestination>(path: Path<TDocument, TDestination>, value: any): Patch<TDocument> {
+    test<TDestination>(path: Path<TDocument, TDestination>, value: TDestination): Patch<TDocument> {
         this.operations.push({ op: 'test', path: resolvePath(path), value: value });
         return this;
     }
