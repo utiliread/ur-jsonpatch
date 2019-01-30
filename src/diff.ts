@@ -4,7 +4,7 @@ import { Operation } from './operations';
 import { diff as jiffDiff } from 'jiff';
 
 export function diff(from: any, to: any, basePath?: string | BuiltPath<any>): Operation[] {
-    let operations = jiffDiff(from, to, {
+    const operations = jiffDiff(from, to, {
         invertible: false // Do not include test operations at the moment
     });
 
@@ -18,7 +18,7 @@ export function diff(from: any, to: any, basePath?: string | BuiltPath<any>): Op
         resolvedBasePath = resolvedBasePath.substr(0, resolvedBasePath.length - 1);
     }
 
-    for (let operation of operations) {
+    for (const operation of operations) {
         operation.path = resolvedBasePath + operation.path;
 
         if (operation.from) {
