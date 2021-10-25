@@ -60,17 +60,17 @@ describe('patch', () => {
         expect(operations[0].value).to.equal('new value');
     });
 
-    it('should append of no index is specified', () => {
+    it('should add or update if not array', () => {
         const patch = new Patch<Document>();
         
-        patch.add(x => x.array, 'new value');
+        patch.add(x => x.string, 'new string value');
 
         const operations: any[] = patch.operations;
 
         expect(operations).has.length(1);
         expect(operations[0].op).to.equal('add');
-        expect(operations[0].path).to.equal('/array/-');
-        expect(operations[0].value).to.equal('new value');
+        expect(operations[0].path).to.equal('/string');
+        expect(operations[0].value).to.equal('new string value');
     });
 
     it('should insert if an index is specified', () => {
@@ -83,6 +83,19 @@ describe('patch', () => {
         expect(operations).has.length(1);
         expect(operations[0].op).to.equal('add');
         expect(operations[0].path).to.equal('/array/1');
+        expect(operations[0].value).to.equal('new value');
+    });
+
+    it('should append if array and no index is specified', () => {
+        const patch = new Patch<Document>();
+        
+        patch.addEnd(x => x.array, 'new value');
+
+        const operations: any[] = patch.operations;
+
+        expect(operations).has.length(1);
+        expect(operations[0].op).to.equal('add');
+        expect(operations[0].path).to.equal('/array/-');
         expect(operations[0].value).to.equal('new value');
     });
 });

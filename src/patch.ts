@@ -1,4 +1,4 @@
-import { Path, TypedPathBuilder, resolvePath } from './typed-path';
+import { Path, resolvePath } from './typed-path';
 
 import { Operation } from './operations';
 
@@ -6,11 +6,12 @@ export class Patch<TDocument> {
     operations: Operation[] = [];
 
     add<TDestination>(path: Path<TDocument, TDestination>, value: TDestination): Patch<TDocument> {
-        let resolvedPath = resolvePath(path);
-        if (!/^.*[0-9]$/.test(resolvedPath)) {
-            resolvedPath += "/-"; // Append
-        }
-        this.operations.push({ op: 'add', path: resolvedPath, value: value });
+        this.operations.push({ op: 'add', path: resolvePath(path), value: value });
+        return this;
+    }
+
+    addEnd<TDestination>(path: Path<TDocument, TDestination>, value: TDestination): Patch<TDocument> {
+        this.operations.push({ op: 'add', path: resolvePath(path) + "/-", value: value });
         return this;
     }
 

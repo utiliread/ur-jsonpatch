@@ -7,11 +7,11 @@ var Patch = /** @class */ (function () {
         this.operations = [];
     }
     Patch.prototype.add = function (path, value) {
-        var resolvedPath = (0, typed_path_1.resolvePath)(path);
-        if (!/^.*[0-9]$/.test(resolvedPath)) {
-            resolvedPath += "/-"; // Append
-        }
-        this.operations.push({ op: 'add', path: resolvedPath, value: value });
+        this.operations.push({ op: 'add', path: (0, typed_path_1.resolvePath)(path), value: value });
+        return this;
+    };
+    Patch.prototype.addEnd = function (path, value) {
+        this.operations.push({ op: 'add', path: (0, typed_path_1.resolvePath)(path) + "/-", value: value });
         return this;
     };
     Patch.prototype.remove = function (path) {
