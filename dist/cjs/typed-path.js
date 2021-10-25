@@ -1,6 +1,16 @@
 "use strict";
 // https://github.com/Microsoft/TypeScript/issues/3496#issuecomment-128553540
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.resolvePath = exports.typedPath = void 0;
 var toStringMethods = [
     'toString',
     'path',
@@ -27,7 +37,7 @@ function typedPath(path) {
             if (toStringMethods.includes(name)) {
                 return function () { return pathToString(path); };
             }
-            return typedPath(path.concat([name.toString()]));
+            return typedPath(__spreadArray(__spreadArray([], path, true), [name.toString()], false));
         }
     });
 }
