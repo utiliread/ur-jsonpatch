@@ -8,7 +8,7 @@ export class Patch<TDocument> {
   add<TDestination>(
     path: Path<TDocument, TDestination>,
     value: TDestination
-  ): Patch<TDocument> {
+  ): this {
     this.operations.push({ op: "add", path: resolvePath(path), value: value });
     return this;
   }
@@ -16,7 +16,7 @@ export class Patch<TDocument> {
   addEnd<TDestination>(
     path: Path<TDocument, TDestination>,
     value: TDestination
-  ): Patch<TDocument> {
+  ): this {
     this.operations.push({
       op: "add",
       path: resolvePath(path) + "/-",
@@ -25,7 +25,7 @@ export class Patch<TDocument> {
     return this;
   }
 
-  remove<TDestination>(path: Path<TDocument, TDestination>): Patch<TDocument> {
+  remove<TDestination>(path: Path<TDocument, TDestination>): this {
     this.operations.push({ op: "remove", path: resolvePath(path) });
     return this;
   }
@@ -33,7 +33,7 @@ export class Patch<TDocument> {
   replace<TDestination>(
     path: Path<TDocument, TDestination>,
     value: TDestination
-  ): Patch<TDocument> {
+  ): this {
     this.operations.push({
       op: "replace",
       path: resolvePath(path),
@@ -45,7 +45,7 @@ export class Patch<TDocument> {
   copy<TDestination>(
     from: Path<TDocument, TDestination>,
     path: Path<TDocument, TDestination>
-  ): Patch<TDocument> {
+  ): this {
     this.operations.push({
       op: "copy",
       from: resolvePath(from),
@@ -57,7 +57,7 @@ export class Patch<TDocument> {
   move<TDestination>(
     from: Path<TDocument, TDestination>,
     path: Path<TDocument, TDestination>
-  ): Patch<TDocument> {
+  ): this {
     this.operations.push({
       op: "move",
       from: resolvePath(from),
@@ -69,7 +69,7 @@ export class Patch<TDocument> {
   test<TDestination>(
     path: Path<TDocument, TDestination>,
     value: TDestination
-  ): Patch<TDocument> {
+  ): this {
     this.operations.push({ op: "test", path: resolvePath(path), value: value });
     return this;
   }
