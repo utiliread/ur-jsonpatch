@@ -1,14 +1,14 @@
-import { resolvePath } from './typed-path';
-import { diff as jiffDiff } from 'jiff';
+import { resolvePath } from "./typed-path";
+import { diff as jiffDiff } from "jiff";
 export function diff(from, to, basePath) {
     var operations = jiffDiff(from, to, {
-        invertible: false // Do not include test operations at the moment
+        invertible: false, // Do not include test operations at the moment
     });
-    var resolvedBasePath = '';
+    var resolvedBasePath = "";
     if (basePath) {
         resolvedBasePath = resolvePath(basePath);
     }
-    if (resolvedBasePath.endsWith('/')) {
+    if (resolvedBasePath.endsWith("/")) {
         resolvedBasePath = resolvedBasePath.substr(0, resolvedBasePath.length - 1);
     }
     for (var _i = 0, operations_1 = operations; _i < operations_1.length; _i++) {

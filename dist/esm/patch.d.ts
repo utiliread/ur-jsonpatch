@@ -1,5 +1,5 @@
-import { Path } from './typed-path';
-import { Operation } from './operations';
+import { Path } from "./typed-path";
+import { Operation } from "./operations";
 export declare class Patch<TDocument> {
     operations: Operation[];
     add<TDestination>(path: Path<TDocument, TDestination>, value: TDestination): Patch<TDocument>;

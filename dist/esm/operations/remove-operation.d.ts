@@ -1,4 +1,4 @@
 export interface RemoveOperation {
-    op: 'remove';
+    op: "remove";
     path: string;
 }

@@ -1,5 +1,5 @@
 export interface CopyOperation {
-    op: 'copy';
+    op: "copy";
     path: string;
     from: string;
 }

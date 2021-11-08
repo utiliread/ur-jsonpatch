@@ -1,5 +1,5 @@
 export interface TestOperation<T> {
-    op: 'test';
+    op: "test";
     path: string;
     value: T;
 }

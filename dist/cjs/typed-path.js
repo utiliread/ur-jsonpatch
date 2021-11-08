@@ -12,23 +12,23 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resolvePath = exports.typedPath = void 0;
 var toStringMethods = [
-    'toString',
-    'path',
+    "toString",
+    "path",
     Symbol.toStringTag,
-    'valueOf'
+    "valueOf",
 ];
 function pathToString(path) {
     return path.reduce(function (accumulated, current) {
         if (+current === +current) {
             return accumulated + ("/" + current);
         }
-        else if (accumulated !== '/') {
+        else if (accumulated !== "/") {
             return accumulated + ("/" + current);
         }
         else {
             return accumulated + current;
         }
-    }, '/');
+    }, "/");
 }
 function typedPath(path) {
     if (path === void 0) { path = []; }
@@ -38,12 +38,12 @@ function typedPath(path) {
                 return function () { return pathToString(path); };
             }
             return typedPath(__spreadArray(__spreadArray([], path, true), [name.toString()], false));
-        }
+        },
     });
 }
 exports.typedPath = typedPath;
 function resolvePath(path) {
-    if (typeof path === 'string') {
+    if (typeof path === "string") {
         return path;
     }
     else if (isBuiltPath(path)) {
@@ -55,6 +55,6 @@ function resolvePath(path) {
 }
 exports.resolvePath = resolvePath;
 function isBuiltPath(path) {
-    return typeof path.path === 'function';
+    return typeof path.path === "function";
 }
 //# sourceMappingURL=typed-path.js.map

@@ -9,23 +9,23 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 var toStringMethods = [
-    'toString',
-    'path',
+    "toString",
+    "path",
     Symbol.toStringTag,
-    'valueOf'
+    "valueOf",
 ];
 function pathToString(path) {
     return path.reduce(function (accumulated, current) {
         if (+current === +current) {
             return accumulated + ("/" + current);
         }
-        else if (accumulated !== '/') {
+        else if (accumulated !== "/") {
             return accumulated + ("/" + current);
         }
         else {
             return accumulated + current;
         }
-    }, '/');
+    }, "/");
 }
 export function typedPath(path) {
     if (path === void 0) { path = []; }
@@ -35,11 +35,11 @@ export function typedPath(path) {
                 return function () { return pathToString(path); };
             }
             return typedPath(__spreadArray(__spreadArray([], path, true), [name.toString()], false));
-        }
+        },
     });
 }
 export function resolvePath(path) {
-    if (typeof path === 'string') {
+    if (typeof path === "string") {
         return path;
     }
     else if (isBuiltPath(path)) {
@@ -50,6 +50,6 @@ export function resolvePath(path) {
     }
 }
 function isBuiltPath(path) {
-    return typeof path.path === 'function';
+    return typeof path.path === "function";
 }
 //# sourceMappingURL=typed-path.js.map

@@ -1,5 +1,5 @@
 export interface MoveOperation {
-    op: 'move';
+    op: "move";
     path: string;
     from: string;
 }
