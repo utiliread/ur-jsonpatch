@@ -6,7 +6,7 @@ import { diff as jiffDiff } from "jiff";
 export function diff<TDocument = any, TDestination = any>(
   from: TDestination,
   to: TDestination,
-  basePath?: string | Path<TDocument, TDestination>
+  basePath?: Path<TDocument, TDestination>
 ): Operation[] {
   const operations = jiffDiff(from, to, {
     invertible: false, // Do not include test operations at the moment
