@@ -26,6 +26,19 @@ describe("diff", () => {
     expect(result[0].value).to.equal(3);
   });
 
+  it("should create one add operation with a typed base path", () => {
+    const from = [1, 2];
+    const obj = { ids: from };
+    const to = [1, 2, 3];
+
+    const result: any[] = diff<{ids: number[]}>(from, to, x => x.ids);
+
+    expect(result).has.length(1);
+    expect(result[0].op).to.equal("add");
+    expect(result[0].path).to.equal("/ids/2");
+    expect(result[0].value).to.equal(3);
+  });
+
   it("should create one remove operation", () => {
     const from = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const to = [1, 2, 3, 4, 6, 7, 8, 9, 10];
