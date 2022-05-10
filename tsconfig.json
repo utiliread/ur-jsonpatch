@@ -1,14 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "declaration": true,
-    "sourceMap": true,
+    "target": "ES2018",
+    "moduleResolution": "Node",
     "strict": true,
-    "rootDir": "src",
-    "outDir": "dist/esm",
-    "lib": ["esnext"],
+    "rootDirs": ["src"],
+    "lib": ["ES2018"],
     "types": ["mocha"]
-  }
+  },
+  "exclude": ["dist"]
 }

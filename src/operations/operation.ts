@@ -6,9 +6,9 @@ import { ReplaceOperation } from "./replace-operation";
 import { TestOperation } from "./test-operation";
 
 export declare type Operation =
-  | AddOperation<any>
+  | AddOperation
   | RemoveOperation
-  | ReplaceOperation<any>
+  | ReplaceOperation
   | CopyOperation
   | MoveOperation
-  | TestOperation<any>;
+  | TestOperation;
