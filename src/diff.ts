@@ -1,3 +1,5 @@
+import "jiff";
+
 import { Path, resolvePath } from "./typed-path";
 
 import { Operation } from "./operations";
@@ -19,7 +21,7 @@ export function diff<TDocument = any, TDestination = any>(
   }
 
   if (resolvedBasePath.endsWith("/")) {
-    resolvedBasePath = resolvedBasePath.substr(0, resolvedBasePath.length - 1);
+    resolvedBasePath = resolvedBasePath.substring(0, resolvedBasePath.length - 1);
   }
 
   for (const operation of operations) {

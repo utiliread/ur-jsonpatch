@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2018",
-    "moduleResolution": "Node",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "strict": true,
-    "rootDirs": ["src"],
+    "rootDir": "src",
     "lib": ["ES2018"],
     "types": ["mocha"]
-  },
-  "exclude": ["dist"]
+  }
 }
