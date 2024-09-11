@@ -31,7 +31,7 @@ describe("diff", () => {
     const obj = { ids: from };
     const to = [1, 2, 3];
 
-    const result: any[] = diff<{ids: number[]}>(from, to, x => x.ids);
+    const result: any[] = diff<{ ids: number[] }>(from, to, (x) => x.ids);
 
     expect(result).has.length(1);
     expect(result[0].op).to.equal("add");

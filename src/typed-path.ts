@@ -42,19 +42,19 @@ export function typedPath<T>(path: string[] = []): TypedPathBuilder<T> {
   return <TypedPathBuilder<T>>new Proxy(
     {},
     {
-      get(target: T, name: string | symbol | number) {
+      get(target, name) {
         if (toStringMethods.includes(name)) {
           return () => pathToString(path);
         }
 
         return typedPath([...path, name.toString()]);
       },
-    }
+    },
   );
 }
 
 export function resolvePath<TDocument, TDestination>(
-  path: Path<TDocument, TDestination>
+  path: Path<TDocument, TDestination>,
 ) {
   if (typeof path === "string") {
     return path;
@@ -66,7 +66,7 @@ export function resolvePath<TDocument, TDestination>(
 }
 
 function isBuiltPath<TDocument, TDestination>(
-  path: Path<TDocument, TDestination>
+  path: Path<TDocument, TDestination>,
 ): path is BuiltPath<TDestination> {
   return typeof (<any>path).path === "function";
 }
