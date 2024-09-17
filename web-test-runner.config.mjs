@@ -11,9 +11,7 @@ export default {
   files: ["src/**/*.spec.ts"],
   plugins: [
     commonjs({
-      include: [
-        "**/node_modules/jiff/**/*",
-      ],
+      include: ["**/node_modules/jiff/**/*"],
     }),
     esbuildPlugin({ ts: true }),
   ],
