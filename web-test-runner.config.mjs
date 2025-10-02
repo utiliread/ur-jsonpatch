@@ -12,6 +12,7 @@ export default {
   plugins: [
     commonjs({
       include: ["**/node_modules/jiff/**/*"],
+      strictRequires: "auto"
     }),
     esbuildPlugin({ ts: true }),
   ],
